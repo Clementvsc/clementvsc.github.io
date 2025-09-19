@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sahaya Clement Vincent Martin — DevOps | Cloud | Python</title>
+  <meta name="description" content="DevOps/Cloud engineer focused on Terraform, Kubernetes, CI/CD, and Python automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f17;--fg:#e6edf3;--muted:#9aa4af;--card:#111827;--card2:#0e1624;--pri:#5eead4;--acc:#60a5fa;--warn:#f59e0b;--ok:#22c55e;
+      --ring: rgba(96,165,250,.35)
+    }
+    [data-theme="light"]{--bg:#f7fafc;--fg:#0b1220;--muted:#4b5563;--card:#ffffff;--card2:#f1f5f9;--pri:#0ea5e9;--acc:#8b5cf6}
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{background:linear-gradient(180deg,var(--bg),#0a101c 35%, var(--bg));color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(10,16,28,.9),rgba(10,16,28,.6));backdrop-filter:saturate(1.2) blur(8px);z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
+    nav{display:flex;align-items:center;gap:16px;justify-content:space-between}
+    .brand{display:flex;gap:10px;align-items:center}
+    .badge{font-size:12px;border:1px solid rgba(255,255,255,.1);padding:4px 8px;border-radius:999px;color:var(--muted)}
+    .theme{border:1px solid rgba(255,255,255,.1);background:var(--card);color:var(--fg);border-radius:8px;padding:8px 10px;cursor:pointer}
+    .grid{display:grid;gap:18px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:36px 0}
+    .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);padding:14px;border-radius:12px;text-align:center}
+    h1{font-size:40px;line-height:1.1;margin:0}
+    h2{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:rgba(94,234,212,.08);border:1px solid rgba(94,234,212,.35);color:#a7f3d0;padding:6px 10px;border-radius:999px;font-size:12px}
+    .chip.alt{background:rgba(96,165,250,.08);border-color:var(--ring);color:#c7d2fe}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{background:linear-gradient(180deg,var(--acc),#2563eb);color:white;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;box-shadow:0 8px 24px rgba(37,99,235,.35)}
+    .btn.alt{background:transparent;border:1px solid rgba(255,255,255,.16);color:var(--fg)}
+    .avatar{aspect-ratio:1/1;background:radial-gradient(100% 100% at 30% 20%,#1f2a44,#0d1321);border-radius:16px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
+    .avatar::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05), inset 0 -60px 120px rgba(96,165,250,.15)}
+    section{scroll-margin-top:84px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .timeline{border-left:2px solid rgba(255,255,255,.12);padding-left:16px}
+    .tl{margin-bottom:14px}
+    .tl h4{margin:0}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .project h3{margin:0}
+    .skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .skill-card ul{margin:8px 0 0 18px}
+    footer{margin:40px 0 10px;color:var(--muted);text-align:center}
+    .toast{position:fixed;right:18px;bottom:18px;background:var(--card);border:1px solid rgba(255,255,255,.08);padding:10px 14px;border-radius:10px;display:none}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .cards{grid-template-columns:1fr}
+      .skills{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <span class="badge">DevOps • Cloud • Python</span>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center">
+          <a href="#about" class="badge">About</a>
+          <a href="#projects" class="badge">Projects</a>
+          <a href="#skills" class="badge">Skills</a>
+          <a href="#contact" class="badge">Contact</a>
+          <button id="themeToggle" class="theme" title="Toggle theme">Toggle</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section id="hero" class="hero">
+      <div class="card">
+        <h1>👋 Sahaya Clement Vincent Martin</h1>
+        <p class="muted">DevOps/Cloud Engineer focused on Terraform, Kubernetes, CI/CD, and Python automation across AWS and Azure.</p>
+        <div class="chips" aria-label="Key highlights">
+          <span class="chip">Terraform + Terragrunt</span>
+          <span class="chip alt">Kubernetes (EKS/AKS)</span>
+          <span class="chip">GitHub Actions, OIDC</span>
+          <span class="chip alt">DevSecOps • OPA • Trivy</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn alt" href="#contact">Contact</a>
+        </div>
+        <div class="kpis" style="margin-top:14px">
+          <div class="kpi"><div class="muted">IaC Modules</div><div style="font-weight:700">VPC • EKS • RDS • IAM</div></div>
+          <div class="kpi"><div class="muted">CI/CD</div><div style="font-weight:700">GitHub Actions • Gates</div></div>
+          <div class="kpi"><div class="muted">Security</div><div style="font-weight:700">OIDC • OPA • Scanning</div></div>
+          <div class="kpi"><div class="muted">Python</div><div style="font-weight:700">Boto3 • CLI • SDK</div></div>
+        </div>
+      </div>
+      <div class="avatar card" aria-label="Profile image placeholder"></div>
+    </section>
+
+    <section id="about" class="grid">
+      <div class="card two-col">
+        <div>
+          <h2>About</h2>
+          <p>DevOps and Cloud Engineer with strong foundations in automation, infrastructure-as-code, and platform engineering. I build secure, scalable developer platforms using Terraform, Kubernetes, and GitHub Actions—Python at the core for tooling and automation.</p>
+          <div class="chips">
+            <span class="chip">AWS: EKS, EC2, VPC, IAM, RDS, S3</span>
+            <span class="chip alt">Azure: AKS, ACR, Azure DevOps</span>
+            <span class="chip">FinOps • Cost Efficiency</span>
+            <span class="chip alt">Security-by-design</span>
+          </div>
+        </div>
+        <div>
+          <h2>Timeline</h2>
+          <div class="timeline">
+            <div class="tl">
+              <h4>Platform Engineering</h4>
+              <div class="muted">GitOps, Helm, ArgoCD • Observability</div>
+            </div>
+            <div class="tl">
+              <h4>Terraform Cloud Automation</h4>
+              <div class="muted">Multi-env IaC • OIDC • Policy-as-code</div>
+            </div>
+            <div class="tl">
+              <h4>Python Automation Toolkit</h4>
+              <div class="muted">Credential rotation • Tagging • Reports</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="grid">
+      <h2>Featured Projects</h2>
+      <div class="cards">
+        <article class="card project">
+          <h3>Terraform Cloud/Platform Automation</h3>
+          <p class="muted">Reusable modules, GitHub OIDC, multi-env with Terragrunt, policy-as-code, and security scanning.</p>
+          <ul>
+            <li>Modules: VPC, EKS, RDS, IAM (least-privilege)</li>
+            <li>CI: OPA/Conftest, tfsec, Trivy</li>
+          </ul>
+          <div class="chips"><span class="chip">Terraform</span><span class="chip">Terragrunt</span><span class="chip alt">AWS</span><span class="chip">GitHub Actions</span></div>
+        </article>
+        <article class="card project">
+          <h3>Kubernetes Platform Engineering</h3>
+          <p class="muted">GitOps with ArgoCD, Helm-based apps, autoscaling, canary/blue-green, and strong observability.</p>
+          <ul>
+            <li>NGINX Ingress • Cert-Manager • RBAC</li>
+            <li>EFK/Loki • Prometheus/Grafana • Alertmanager</li>
+          </ul>
+          <div class="chips"><span class="chip alt">Kubernetes</span><span class="chip">Helm</span><span class="chip alt">ArgoCD</span><span class="chip">SRE</span></div>
+        </article>
+        <article class="card project">
+          <h3>Python Automation Toolkit</h3>
+          <p class="muted">CLI tools for credentials, cleanup, tagging, and cost reports. Packaged, tested, and CI-integrated.</p>
+          <ul>
+            <li>Typer/Click • Boto3/Azure SDK • pytest</li>
+          </ul>
+          <div class="chips"><span class="chip">Python</span><span class="chip alt">Boto3</span><span class="chip">Azure SDK</span></div>
+        </article>
+        <article class="card project">
+          <h3>ABC App — Sample Microservices</h3>
+          <p class="muted">Monorepo with FastAPI/Node, Postgres, Redis, Docker/K8s, and CI/CD to EKS.</p>
+          <ul>
+            <li>SBOM • Image scanning • Helm deploy</li>
+          </ul>
+          <div class="chips"><span class="chip">FastAPI</span><span class="chip alt">Docker</span><span class="chip">Kubernetes</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="grid">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="card skill-card">
+          <h3>Cloud</h3>
+          <ul>
+            <li>AWS: EKS, EC2, VPC, IAM, RDS, S3</li>
+            <li>Azure: AKS, ACR, Azure DevOps</li>
+          </ul>
+        </div>
+        <div class="card skill-card">
+          <h3>DevOps & IaC</h3>
+          <ul>
+            <li>Terraform, Terragrunt, Helm, Kustomize</li>
+            <li>GitHub Actions, Jenkins, GitOps</li>
+          </ul>
+        </div>
+        <div class="card skill-card">
+          <h3>Python</h3>
+          <ul>
+            <li>Automation tooling, SDKs, CLIs</li>
+            <li>pytest, tox, packaging</li>
+          </ul>
+        </div>
+        <div class="card skill-card">
+          <h3>Security</h3>
+          <ul>
+            <li>OIDC, least-privilege IAM</li>
+            <li>OPA/Conftest, Sealed Secrets, SOPS, Trivy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="grid">
+      <div class="card">
+        <h2>Contact</h2>
+        <p class="muted">Toronto, ON • Open to Full-Time • Remote/Hybrid/Onsite</p>
+        <div class="chips">
+          <a class="chip" href="mailto:clementvsc.martin@gmail.com">Email</a>
+          <a class="chip alt" href="https://www.linkedin.com/in/sahaya-clement/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="chip" href="https://github.com/Clementvsc" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip alt" href="https://clementvsc.github.io/" target="_blank" rel="noopener">Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Clementvsc. Built with modern web, dark/light mode, and animations.</div>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast">Theme updated</div>
+
+  <script>
+    // Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    const toast = document.getElementById('toast');
+    const root = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    function setTheme(mode){
+      root.setAttribute('data-theme', mode);
+      toast.style.display='block';
+      setTimeout(()=> toast.style.display='none',
