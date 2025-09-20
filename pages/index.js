@@ -54,15 +54,15 @@ const Nav = () => (
   <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/70 backdrop-blur border-b border-gray-200/60 dark:border-gray-800">
     <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-14">
-        <a href="#hero" className="font-semibold text-gray-900 dark:text-white">Clement Vsc</a>
+        <a className="font-semibold text-gray-900 dark:text-white" href="#hero">Clement Vsc</a>
         <div className="hidden sm:flex items-center gap-6">
           {['hero','about','projects','contact'].map((id) => (
-            <a key={id} href={`#${id}`} className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href={`#${id}`} key={id}>
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </a>
           ))}
         </div>
-        <a href="#contact" className="hidden sm:inline-flex px-3 py-1.5 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700">Hire me</a>
+        <a className="hidden sm:inline-flex px-3 py-1.5 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700" href="#contact">Hire me</a>
       </div>
     </nav>
   </header>
@@ -71,7 +71,7 @@ const Nav = () => (
 export default function Home() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 scroll-smooth">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-indigo-950 text-gray-900 dark:text-gray-100 scroll-smooth">
         <Head>
           <title>Clement Vsc - DevOps Engineer & Cloud Solutions Architect</title>
           <meta name="description" content="Portfolio of Clement Vsc - DevOps, Cloud, and Python engineering." />
@@ -84,12 +84,12 @@ export default function Home() {
 
         <main className="relative">
           {/* Hero */}
-          <section id="hero" className="pt-8 sm:pt-12">
+          <section className="pt-8 sm:pt-12" id="hero">
             <Hero />
           </section>
 
           {/* About + Skills */}
-          <section id="about" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
+          <section className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800" id="about">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,7 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12 sm:mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
+                <h2 className="section-title mb-4">About Me</h2>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                   DevOps Engineer focused on cloud infrastructure, automation, and scalable Python systems.
                 </p>
@@ -112,7 +112,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg"
+                    className="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg text-center"
                   >
                     <div className="text-2xl sm:text-3xl mb-2">{skill.icon}</div>
                     <h3 className="font-semibold mb-2">{skill.name}</h3>
@@ -133,7 +133,7 @@ export default function Home() {
           </section>
 
           {/* Projects */}
-          <section id="projects" className="py-16 sm:py-20">
+          <section className="py-16 sm:py-20" id="projects">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -142,7 +142,7 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12 sm:mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+                <h2 className="section-title mb-4">Featured Projects</h2>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                   Fully clickable cards with Code and Live Demo links.
                 </p>
@@ -150,7 +150,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {projects.map((project, index) => (
-                  <ProjectCard key={project.title} project={project} index={index} />
+                  <ProjectCard index={index} key={project.title} project={project} />
                 ))}
               </div>
 
@@ -172,7 +172,7 @@ export default function Home() {
           </section>
 
           {/* Contact */}
-          <section id="contact" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
+          <section className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800" id="contact">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -180,24 +180,24 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Let's Work Together</h2>
+                <h2 className="section-title mb-4">Let's Work Together</h2>
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
                   Reach me via email or LinkedIn. I respond quickly.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a
                     href="mailto:hello@clementvsc.dev"
-                    className="px-6 sm:px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+                    className="btn-primary"
                   >
-                    Email Me
+                    ✉️ Email Me
                   </a>
                   <a
                     href="https://linkedin.com/in/clementvsc"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 sm:px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                    className="btn-secondary"
                   >
-                    LinkedIn
+                    in LinkedIn
                   </a>
                 </div>
               </motion.div>
@@ -210,10 +210,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="mb-2">© {new Date().getFullYear()} Clement Vsc. Built with Next.js, Tailwind, Framer Motion.</p>
             <div className="flex justify-center gap-5 text-sm">
-              <a href="#hero" className="hover:text-white">Hero</a>
-              <a href="#about" className="hover:text-white">About</a>
-              <a href="#projects" className="hover:text-white">Projects</a>
-              <a href="#contact" className="hover:text-white">Contact</a>
+              <a className="hover:text-white" href="#hero">Hero</a>
+              <a className="hover:text-white" href="#about">About</a>
+              <a className="hover:text-white" href="#projects">Projects</a>
+              <a className="hover:text-white" href="#contact">Contact</a>
             </div>
           </div>
         </footer>
