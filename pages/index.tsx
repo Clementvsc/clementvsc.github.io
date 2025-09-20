@@ -17,41 +17,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <div className="container mx-auto px-4">
-        <NavBar />
-      </div>
+      <NavBar />
       
       <main>
-        <div className="container mx-auto px-4 text-center">
+        <section id="home" className="mx-auto max-w-6xl px-4 text-center">
           <Hero />
-        </div>
-        <div className="container mx-auto px-4 text-center">
+        </section>
+        
+        <section id="about" className="mx-auto max-w-6xl px-4 text-center">
           <About />
-        </div>
-        <div className="container mx-auto px-4 text-center">
+        </section>
+        
+        <section id="skills" className="mx-auto max-w-6xl px-4 text-center">
           <Skills />
-        </div>
-        <div className="container mx-auto px-4 text-center">
+        </section>
+        
+        <section id="projects" className="mx-auto max-w-6xl px-4 text-center">
           <Projects />
-        </div>
-        <div className="container mx-auto px-4 text-center">
+        </section>
+        
+        <section id="testimonials" className="mx-auto max-w-6xl px-4 text-center">
           <Testimonials />
-        </div>
-        <div className="container mx-auto px-4 text-center">
+        </section>
+        
+        <section id="contact" className="mx-auto max-w-6xl px-4 text-center">
           <Contact />
-        </div>
+        </section>
       </main>
-      
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Clement VSC. All rights reserved.
-          </p>
-          <p className="text-gray-500 text-sm mt-2">
-            Built with Next.js and Tailwind CSS
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
