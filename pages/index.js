@@ -4,9 +4,6 @@ import { motion } from 'framer-motion';
 import { ThemeProvider } from 'next-themes';
 import Hero from '../components/Hero';
 import ProjectCard from '../components/ProjectCard';
-import About from '../components/About';
-import Skills from '../components/Skills';
-import Contact from '../components/Contact';
 
 // Static data - no dynamic imports or async fetching
 const skills = [
