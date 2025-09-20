@@ -5,7 +5,6 @@ import { ThemeProvider } from 'next-themes';
 import Hero from '../components/Hero';
 import ProjectCard from '../components/ProjectCard';
 
-// Sample data structures
 const skills = [
   { name: 'Python', level: 90, category: 'backend', icon: '🐍' },
   { name: 'JavaScript/TypeScript', level: 85, category: 'fullstack', icon: '⚡' },
@@ -22,15 +21,18 @@ const skills = [
 const projects = [
   {
     title: 'Cloud Infrastructure Automation',
-    description: 'Automated multi-cloud infrastructure deployment using Terraform, featuring auto-scaling, monitoring, and disaster recovery across AWS and Azure environments.',
+    description:
+      'Automated multi-cloud infrastructure with Terraform, auto-scaling, monitoring, and DR across AWS/Azure.',
     technologies: ['Terraform', 'AWS', 'Azure', 'Kubernetes', 'Prometheus', 'Grafana'],
     status: 'completed',
     githubUrl: 'https://github.com/clementvsc/cloud-infra-automation',
+    liveUrl: 'https://infra-demo.clementvsc.dev',
     icon: '☁️'
   },
   {
     title: 'Microservices DevOps Pipeline',
-    description: 'Complete CI/CD pipeline for microservices architecture with automated testing, security scanning, and blue-green deployments.',
+    description:
+      'End-to-end CI/CD for microservices with testing, security scanning, and blue-green deployments.',
     technologies: ['Docker', 'Kubernetes', 'Jenkins', 'SonarQube', 'ArgoCD', 'Helm'],
     status: 'completed',
     githubUrl: 'https://github.com/clementvsc/microservices-pipeline',
@@ -38,138 +40,117 @@ const projects = [
   },
   {
     title: 'Python API Gateway',
-    description: 'High-performance API gateway built with FastAPI, featuring rate limiting, authentication, request routing, and real-time analytics.',
+    description:
+      'FastAPI-based API gateway with auth, rate limiting, routing, and real-time analytics.',
     technologies: ['Python', 'FastAPI', 'Redis', 'PostgreSQL', 'Docker', 'JWT'],
     status: 'completed',
     githubUrl: 'https://github.com/clementvsc/python-api-gateway',
     liveUrl: 'https://api-gateway-demo.clementvsc.dev',
     icon: '⚡'
-  },
-  {
-    title: 'Infrastructure Monitoring Suite',
-    description: 'Comprehensive monitoring solution with custom dashboards, alerting, and automated incident response for cloud-native applications.',
-    technologies: ['Prometheus', 'Grafana', 'ELK Stack', 'Python', 'Kubernetes', 'Slack API'],
-    status: 'in-progress',
-    githubUrl: 'https://github.com/clementvsc/monitoring-suite',
-    icon: '📊'
-  },
-  {
-    title: 'Container Security Scanner',
-    description: 'Automated container vulnerability scanning and compliance checking tool integrated into CI/CD pipelines.',
-    technologies: ['Python', 'Docker', 'Trivy', 'OWASP', 'Jenkins', 'GitLab CI'],
-    status: 'completed',
-    githubUrl: 'https://github.com/clementvsc/container-security-scanner',
-    icon: '🔒'
-  },
-  {
-    title: 'Cloud Cost Optimization Tool',
-    description: 'Machine learning-powered tool for analyzing and optimizing cloud resource costs across multiple providers.',
-    technologies: ['Python', 'TensorFlow', 'AWS Cost Explorer', 'Azure Cost Management', 'Pandas'],
-    status: 'in-progress',
-    githubUrl: 'https://github.com/clementvsc/cloud-cost-optimizer',
-    icon: '💰'
   }
 ];
+
+const Nav = () => (
+  <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/70 backdrop-blur border-b border-gray-200/60 dark:border-gray-800">
+    <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between h-14">
+        <a href="#hero" className="font-semibold text-gray-900 dark:text-white">Clement Vsc</a>
+        <div className="hidden sm:flex items-center gap-6">
+          {['hero','about','projects','contact'].map((id) => (
+            <a key={id} href={`#${id}`} className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+        </div>
+        <a href="#contact" className="hidden sm:inline-flex px-3 py-1.5 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700">Hire me</a>
+      </div>
+    </nav>
+  </header>
+);
 
 export default function Home() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 scroll-smooth">
         <Head>
           <title>Clement Vsc - DevOps Engineer & Cloud Solutions Architect</title>
-          <meta name="description" content="Professional portfolio of Clement Vsc - DevOps Engineer, Cloud Solutions Architect, and Python Developer specializing in automation, scalable infrastructure, and modern cloud technologies." />
-          <meta name="keywords" content="devops engineer, cloud solutions, python developer, terraform, kubernetes, aws, azure, automation, microservices, portfolio" />
+          <meta name="description" content="Portfolio of Clement Vsc - DevOps, Cloud, and Python engineering." />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta property="og:title" content="Clement Vsc - DevOps Engineer & Cloud Solutions Architect" />
-          <meta property="og:description" content="Professional portfolio showcasing expertise in DevOps automation, cloud infrastructure, and Python development." />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://clementvsc.github.io" />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="canonical" href="https://clementvsc.github.io" />
+          <style>{`html{scroll-behavior:smooth}`}</style>
         </Head>
 
-        <motion.main
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
-        >
-          {/* Hero Section */}
-          <Hero />
+        <Nav />
 
-          {/* About Section */}
-          <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
+        <main className="relative">
+          {/* Hero */}
+          <section id="hero" className="pt-8 sm:pt-12">
+            <Hero />
+          </section>
+
+          {/* About + Skills */}
+          <section id="about" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-16"
+                className="text-center mb-12 sm:mb-16"
               >
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  About Me
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                  Passionate DevOps Engineer with expertise in cloud infrastructure, automation, and scalable Python solutions. 
-                  I build robust systems that drive business growth and operational efficiency.
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  DevOps Engineer focused on cloud infrastructure, automation, and scalable Python systems.
                 </p>
               </motion.div>
 
-              {/* Skills Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
                 {skills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg"
                   >
-                    <div className="text-3xl mb-3">{skill.icon}</div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{skill.name}</h3>
+                    <div className="text-2xl sm:text-3xl mb-2">{skill.icon}</div>
+                    <h3 className="font-semibold mb-2">{skill.name}</h3>
                     <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                       <motion.div
                         className="bg-blue-600 h-2 rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
+                        transition={{ duration: 1 }}
                       />
                     </div>
-                    <span className="text-sm text-gray-600 dark:text-gray-400 mt-1">{skill.level}%</span>
+                    <div className="mt-1 text-xs text-gray-600 dark:text-gray-300">{skill.level}%</div>
                   </motion.div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* Projects Section */}
-          <section id="projects" className="py-20 bg-white dark:bg-gray-900">
+          {/* Projects */}
+          <section id="projects" className="py-16 sm:py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-16"
+                className="text-center mb-12 sm:mb-16"
               >
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  Featured Projects
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                  A showcase of my recent work in DevOps automation, cloud infrastructure, and Python development.
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                  Fully clickable cards with Code and Live Demo links.
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {projects.map((project, index) => (
-                  <ProjectCard
-                    key={project.title}
-                    project={project}
-                    index={index}
-                  />
+                  <ProjectCard key={project.title} project={project} index={index} />
                 ))}
               </div>
 
@@ -177,12 +158,12 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-center mt-12"
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-center mt-10"
               >
                 <a
                   href="/projects"
-                  className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                  className="inline-block px-6 sm:px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
                 >
                   View All Projects
                 </a>
@@ -190,8 +171,8 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Contact Section */}
-          <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
+          {/* Contact */}
+          <section id="contact" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -199,43 +180,40 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-                  Let's Work Together
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                  Ready to optimize your infrastructure or automate your workflows? Let's discuss how I can help your team achieve operational excellence.
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Let's Work Together</h2>
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                  Reach me via email or LinkedIn. I respond quickly.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a
-                    href="mailto:clement.vsc@example.com"
-                    className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                    href="mailto:hello@clementvsc.dev"
+                    className="px-6 sm:px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
                   >
-                    Get In Touch
+                    Email Me
                   </a>
                   <a
                     href="https://linkedin.com/in/clementvsc"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-300"
+                    className="px-6 sm:px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
                   >
-                    LinkedIn Profile
+                    LinkedIn
                   </a>
                 </div>
               </motion.div>
             </div>
           </section>
-        </motion.main>
+        </main>
 
         {/* Footer */}
-        <footer className="bg-gray-900 dark:bg-black text-white py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <p className="mb-2">
-                © {new Date().getFullYear()} Clement Vsc. Built with Next.js, Tailwind CSS, and Framer Motion.
-              </p>
-              <p className="text-sm text-gray-400">
-                Open to full-time opportunities • Remote/Hybrid/Onsite
-              </p>
+        <footer className="bg-gray-900 text-gray-300 py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="mb-2">© {new Date().getFullYear()} Clement Vsc. Built with Next.js, Tailwind, Framer Motion.</p>
+            <div className="flex justify-center gap-5 text-sm">
+              <a href="#hero" className="hover:text-white">Hero</a>
+              <a href="#about" className="hover:text-white">About</a>
+              <a href="#projects" className="hover:text-white">Projects</a>
+              <a href="#contact" className="hover:text-white">Contact</a>
             </div>
           </div>
         </footer>
