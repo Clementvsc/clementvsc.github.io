@@ -98,7 +98,8 @@ const Hero = () => {
             transition={{ duration: 1, repeat: Infinity }}
             className="text-blue-600 dark:text-blue-400"
           >
-            </n          </motion.span>
+            |
+          </motion.span>
         </motion.h1>
 
         {/* Tagline */}
