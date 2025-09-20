@@ -16,18 +16,32 @@ export default function Home() {
         <meta name="description" content="Full Stack Developer specializing in modern web technologies" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <NavBar />
+      
+      <div className="container mx-auto px-4">
+        <NavBar />
+      </div>
       
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Testimonials />
-        <Contact />
+        <div className="container mx-auto px-4 text-center">
+          <Hero />
+        </div>
+        <div className="container mx-auto px-4 text-center">
+          <About />
+        </div>
+        <div className="container mx-auto px-4 text-center">
+          <Skills />
+        </div>
+        <div className="container mx-auto px-4 text-center">
+          <Projects />
+        </div>
+        <div className="container mx-auto px-4 text-center">
+          <Testimonials />
+        </div>
+        <div className="container mx-auto px-4 text-center">
+          <Contact />
+        </div>
       </main>
-
+      
       <footer className="bg-gray-900 text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-400">
