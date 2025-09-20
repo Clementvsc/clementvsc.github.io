@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
@@ -40,7 +41,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 relative overflow-hidden geometric-bg">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -75,6 +76,63 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
+        {/* Avatar */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-8 flex justify-center"
+        >
+          <div className="relative">
+            {/* Default avatar with modern gradient background */}
+            <motion.div 
+              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 shadow-2xl flex items-center justify-center text-white text-4xl sm:text-5xl md:text-6xl font-bold overflow-hidden relative"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Geometric pattern overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent rounded-full"></div>
+              <div className="relative z-10">CV</div>
+              
+              {/* Floating particles */}
+              <motion.div
+                className="absolute top-2 right-2 w-2 h-2 bg-white rounded-full opacity-60"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.6, 1, 0.6],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0
+                }}
+              />
+              <motion.div
+                className="absolute bottom-4 left-4 w-1 h-1 bg-white rounded-full opacity-50"
+                animate={{
+                  scale: [1, 2, 1],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: 1
+                }}
+              />
+            </motion.div>
+            
+            {/* Status indicator */}
+            <motion.div 
+              className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow-lg"
+              animate={{
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+            />
+          </div>
+        </motion.div>
+
         {/* Animated greeting */}
         <motion.div
           variants={itemVariants}
@@ -88,9 +146,9 @@ const Hero = () => {
         {/* Animated name */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6"
+          className="hero-title text-gray-900 dark:text-white mb-6"
         >
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="gradient-text">
             {displayText}
           </span>
           <motion.span
@@ -107,7 +165,7 @@ const Hero = () => {
           variants={itemVariants}
           className="mb-8"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+          <h2 className="hero-subtitle text-gray-700 dark:text-gray-300 mb-4">
             DevOps Engineer & Cloud Solutions Architect
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -118,26 +176,50 @@ const Hero = () => {
         {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
           <Link href="/projects">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="btn-primary glow"
             >
+              <span className="mr-2">🚀</span>
               View My Projects
             </motion.button>
           </Link>
+          
           <Link href="#contact">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
+              className="btn-secondary"
             >
+              <span className="mr-2">💬</span>
               Get In Touch
             </motion.button>
           </Link>
+        </motion.div>
+
+        {/* Skills Preview */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-16"
+        >
+          <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+            {['Python', 'Docker', 'Kubernetes', 'AWS', 'React', 'Terraform'].map((skill, index) => (
+              <motion.span
+                key={skill}
+                className="tech-badge"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 2 + index * 0.1 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
         </motion.div>
 
         {/* Scroll indicator */}
